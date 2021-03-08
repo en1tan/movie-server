@@ -1,14 +1,14 @@
 const http = require('http');
-
+const port = process.env.PORT || 8000;
 module.exports = async (app, mongoose) => {
     try {
         const server = http.createServer(app);
-        server.listen(8000, (err) => {
+        server.listen(port, (err) => {
             if (err) {
                 console.log(`Error: ${err}`);
                 process.exit(-1);
             }
-            console.log(`Server running on port 8000`);
+            console.log(`Server running on ${port}`);
         });
         await mongoose.connect('mongodb://localhost/movieDbTest', {
             useNewUrlParser: true,
