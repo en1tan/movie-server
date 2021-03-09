@@ -17,7 +17,7 @@ module.exports = async (app, mongoose) => {
       useFindAndModify: false,
       useCreateIndex: true,
     });
-
+    console.log("Connected to DB");
     return server;
   } catch (err) {
     return new Error("App initialization failed");
