@@ -37,6 +37,7 @@ module.exports = {
   },
 
   async getMovie(req, res) {
+    console.log(req.body);
     const movieDetails = await fetchMovie(req.body.name);
     if (JSON.parse(movieDetails).Response === "False") {
       res.status(404).send({
