@@ -1,6 +1,8 @@
 const http = require("http");
+const mongoose = require('mongoose');
+
 const port = process.env.PORT || 8000;
-const dbUrl = process.env.MONGOURL || 'mongodb+srv://x1k:hero@cluster0.gznkd.gcp.mongodb.net/myraba_lite_dev?retryWrites=true&w=majority';
+const dbUrl = process.env.MONGOURL;
 module.exports = async (app) => {
   try {
     const server = http.createServer(app);
@@ -10,6 +12,16 @@ module.exports = async (app) => {
         process.exit(-1);
       }
       console.log(`Server running on ${port}`);
+    });
+
+    mongoose.connect(dbUrl, {
+      useCreateIndex: true,
+      useFindAndModify: true,
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    }).then((response) => {
+      if (!response) console.error("Error Connecting to DB");
+      console.debug("DB Connected successully");
     });
     return server;
   } catch (err) {

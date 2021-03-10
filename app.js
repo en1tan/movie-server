@@ -3,12 +3,8 @@ const routes = require("./routes");
 const server = require("./server");
 
 const express = require("express");
-// require("express-async-errors");
-// const config = require('./config');
 const helmet = require("helmet");
 const cors = require("cors");
-// const compression = require("compression");
-// const morgan = require("morgan");
 const app = express();
 
 app.use(function (req, res, next) {
@@ -36,4 +32,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-server(app, mongoose);
+server(app);
