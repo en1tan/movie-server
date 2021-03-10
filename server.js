@@ -1,7 +1,7 @@
 const http = require("http");
 const port = process.env.PORT || 8000;
-const dbUrl = process.env.MONGOURL;
-module.exports = async (app, mongoose) => {
+const dbUrl = process.env.MONGOURL || 'mongodb+srv://x1k:hero@cluster0.gznkd.gcp.mongodb.net/myraba_lite_dev?retryWrites=true&w=majority';
+module.exports = async (app) => {
   try {
     const server = http.createServer(app);
     server.listen(port, (err) => {
@@ -11,13 +11,6 @@ module.exports = async (app, mongoose) => {
       }
       console.log(`Server running on ${port}`);
     });
-    await mongoose.connect(dbUrl, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-      useFindAndModify: false,
-      useCreateIndex: true,
-    });
-    console.log("Connected to DB");
     return server;
   } catch (err) {
     return new Error("App initialization failed");
