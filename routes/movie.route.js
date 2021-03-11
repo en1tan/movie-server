@@ -1,5 +1,6 @@
 const MovieModel = require("../models/movie.model");
 const request = require("request");
+const _ = require("lodash");
 
 require("dotenv").config();
 
@@ -53,7 +54,7 @@ module.exports = {
       res.send({
         status: true,
         message: "Movie Fetched",
-        data: movieData,
+        data: _.pick(movieData, ["title", "poster", "link", "genre", "type"]),
       });
     }
   },
