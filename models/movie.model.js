@@ -21,7 +21,7 @@ const movieSchema = new Schema({
   genre: {
     type: String,
   },
-});
+}, { timestamps: true });
 
 const Movies = model("Movies", movieSchema);
 Movies.createCollection();
