@@ -18,9 +18,12 @@ const movieSchema = new Schema({
     enum: ["series", "movie"],
     required: true,
   },
-  genre: {
-    type: String,
+  year: {
+    type: String
   },
+  imdbId: {
+    type: String
+  }
 }, { timestamps: true });
 
 const Movies = model("Movies", movieSchema);
